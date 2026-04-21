@@ -6,7 +6,9 @@
 
     <!-- Botões da barra de navegação do Android -->
     <ContentPage.ToolbarItems>
+        <!-- Botão para somar o total dos produtos: chama ToolbarItem_Clicked_Somar -->
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_Somar" />
+        <!-- Botão para abrir a tela de cadastro de produto: chama ToolbarItem_Clicked_Adicionar -->
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked_Adicionar" />
     </ContentPage.ToolbarItems>
 
@@ -20,12 +22,14 @@
     <!-- Tag body do XAML -->
     <ContentPage.Content>
         <VerticalStackLayout>
+            <!-- Barra de busca: ao alterar o texto chama txt_search_TextChanged -->
             <SearchBar x:Name="txt_search" 
                        Placeholder="Busca de Produtos"
                        TextChanged="txt_search_TextChanged" />
 
             <Border Margin="10" Padding="10"
                     StrokeShape="RoundRectangle 10">
+                <!-- Lista de produtos -->
                 <ListView x:Name="lst_produtos"
                           IsPullToRefreshEnabled="True"
                           Refreshing="lst_produtos_Refreshing"
@@ -42,6 +46,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <!-- Ação de contexto para remover um item: chama MenuItem_Clicked_Remover -->
                                 <ViewCell.ContextActions>
                                     <MenuItem Text="Remover" Clicked="MenuItem_Clicked_Remover" />
                                 </ViewCell.ContextActions>

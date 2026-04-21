@@ -5,17 +5,21 @@
              Title="Cadastro Produto">
     
     <ContentPage.ToolbarItems>
+        <!-- Botão da toolbar para salvar o produto: chama ToolbarItem_Clicked no code-behind -->
         <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <VerticalStackLayout>
+            <!-- Campo para a descrição do produto, ligado ao BindingContext.Descricao -->
             <Label Text="Descrição do Produto:" />
             <Entry x:Name="txt_descricao" Text="{Binding Descricao}" />
-            
+
+            <!-- Campo para quantidade (numérico), ligado ao BindingContext.Quantidade -->
             <Label Text="Quantidade:" />
             <Entry x:Name="txt_quantidade" Keyboard="Numeric" Text="{Binding Quantidade}" />
-            
+
+            <!-- Campo para preço (numérico), ligado ao BindingContext.Preco -->
             <Label Text="Preço:" />
             <Entry x:Name="txt_preco" Keyboard="Numeric" Text="{Binding Preco}" />
         </VerticalStackLayout>

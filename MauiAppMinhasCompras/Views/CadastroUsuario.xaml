@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.CadastroUsuario"
+             Title="Cadastro Usuário">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- Título da página -->
+            <Label Text="Criar Conta" FontSize="20" HorizontalOptions="Center" />
+
+            <!-- Campo para usuário -->
+            <Entry x:Name="txt_username" Placeholder="Usuário" />
+            <!-- Campo para senha (oculto) -->
+            <Entry x:Name="txt_password" Placeholder="Senha" IsPassword="True" />
+            <!-- Campo para confirmar a senha -->
+            <Entry x:Name="txt_password_confirm" Placeholder="Confirme a senha" IsPassword="True" />
+
+            <!-- Botão Salvar: chama BtnSalvar_Clicked no code-behind -->
+            <Button Text="Salvar" Clicked="BtnSalvar_Clicked" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

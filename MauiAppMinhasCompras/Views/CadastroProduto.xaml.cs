@@ -13,6 +13,7 @@ public partial class CadastroProduto : ContentPage
     {
 		try
 		{
+            // Pega o produto que pode ter sido passado como BindingContext (edição)
 			Produto? produto_anexado = BindingContext as Produto;
 
 			Produto p = new()
@@ -24,10 +25,12 @@ public partial class CadastroProduto : ContentPage
 
 			if(produto_anexado == null)
 			{
-                await App.Db.Insert(p);
+                // Se não há produto anexado, insere um novo no banco
+				await App.Db.Insert(p);
             } else
 			{
 				p.Id = produto_anexado.Id;
+                // Se existe produto anexado, atualiza o registro no banco
 				await App.Db.Update(p);
 			}			
 			

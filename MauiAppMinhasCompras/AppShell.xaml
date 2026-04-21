@@ -12,4 +12,8 @@
         ContentTemplate="{DataTemplate Views:ListaProdutos}"
         Route="MainPage" />
 
+    <!-- Rotas para login e cadastro de usuário -->
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate Views:LoginPage}" Route="Login" />
+    <ShellContent Title="CadastroUsuario" ContentTemplate="{DataTemplate Views:CadastroUsuario}" Route="CadastroUsuario" />
+
 </Shell>

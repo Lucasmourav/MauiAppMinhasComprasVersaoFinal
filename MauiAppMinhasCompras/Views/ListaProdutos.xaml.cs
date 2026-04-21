@@ -27,6 +27,7 @@ public partial class ListaProdutos : ContentPage
     {
         try
         {
+            // Quando a página aparece, limpa a lista e carrega todos os produtos do DB
             lista.Clear();
             List<Produto> tmp = await App.Db.GetAll();
             tmp.ForEach(i => lista.Add(i));
@@ -39,15 +40,23 @@ public partial class ListaProdutos : ContentPage
 
     private async void ToolbarItem_Clicked_Somar(object sender, EventArgs e)
     {
+        // Calcula a soma dos totais dos produtos e mostra um alerta
         double soma = lista.Sum(i => i.Total);
 
         string msg = $"O total é {soma:C}";
 
-        await DisplayAlertAsync("Total", msg, "OK");
+        // Oferece opção de finalizar compra e escolher forma de pagamento
+        bool finalizar = await DisplayAlertAsync("Total", msg, "Finalizar compra", "Cancelar");
+        if(finalizar)
+        {
+            // Navega para a página de compra passando o total
+            await Navigation.PushAsync(new Views.CompraPage(soma));
+        }
     }
 
     private void ToolbarItem_Clicked_Adicionar(object sender, EventArgs e)
     {
+        // Navega para a página de cadastro de produto (novo produto)
         Navigation.PushAsync(new Views.CadastroProduto());
     }
 
@@ -56,6 +65,7 @@ public partial class ListaProdutos : ContentPage
         try
         {
             string q = e.NewTextValue;
+            // Busca produtos por descrição conforme o texto digitado
             lst_produtos.IsRefreshing = true;
             lista.Clear();
             List<Produto> tmp = await App.Db.Search(q);
@@ -74,6 +84,7 @@ public partial class ListaProdutos : ContentPage
     {
         try
         {            
+            // Atualiza a lista (pull-to-refresh): recarrega todos os produtos
             lst_produtos.IsRefreshing = true;
             lista.Clear();
             List<Produto> tmp = await App.Db.GetAll();
@@ -94,6 +105,7 @@ public partial class ListaProdutos : ContentPage
     {
         try
         {
+            // Ao selecionar um item, navega para a tela de edição passando o produto como BindingContext
             Produto? p = e.SelectedItem as Produto;
 
             await Navigation.PushAsync(new Views.CadastroProduto
@@ -114,6 +126,7 @@ public partial class ListaProdutos : ContentPage
             MenuItem? selecionado = sender as MenuItem;
             Produto? p = selecionado?.BindingContext as Produto;
 
+            // Remove um produto após confirmação do usuário
             lst_produtos.IsRefreshing = true;
 
             bool confirmacao = await DisplayAlertAsync(

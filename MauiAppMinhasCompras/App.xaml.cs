@@ -34,7 +34,16 @@ namespace MauiAppMinhasCompras
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            var window = new Window(new AppShell());
+
+            // Ao iniciar, navegar para a tela de Login antes de mostrar a lista
+            // Se quiser pular o login por enquanto, comente as próximas linhas
+            window.Page.Dispatcher.Dispatch(async () =>
+            {
+                await window.Page.Navigation.PushAsync(new Views.LoginPage());
+            });
+
+            return window;
         }
     }
 }

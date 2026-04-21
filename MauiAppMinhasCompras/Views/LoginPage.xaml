@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.LoginPage"
+             Title="Login">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Bem-vindo" FontSize="24" HorizontalOptions="Center" />
+
+            <Entry x:Name="txt_username" Placeholder="Usuário" />
+            <Entry x:Name="txt_password" Placeholder="Senha" IsPassword="True" />
+
+            <Button Text="Entrar" Clicked="BtnEntrar_Clicked" />
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Não tem conta?" />
+                <Button Text="Cadastro" Clicked="BtnCadastro_Clicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
